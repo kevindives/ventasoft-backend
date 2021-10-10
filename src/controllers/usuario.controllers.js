@@ -3,7 +3,21 @@ const Usuario=require('../models/usuarios.models')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
+//controladores get
+UsuarioCtrl.verUsuarios = async(req,res)=>{
+    const verUsuario =await Usuario.find({})
 
+    res.json({verUsuario})
+}
+
+UsuarioCtrl.verVendedores = async(req,res)=>{
+    const verUsuario =await Usuario.find({"rol":"vendedor"})
+
+    res.json({verUsuario})
+}
+
+
+//controladores post
 UsuarioCtrl.crearUsuario=async(req,res)=>{
     const{nombre,correo,contrasena,rol,estado}=req.body
     const NuevoUsuario = new Usuario({
@@ -50,5 +64,38 @@ UsuarioCtrl.login= async(req,res)=>{
         })
     }
 }
+
+//controladores put
+UsuarioCtrl.modiicar=async(req,res)=>{
+    const usuarioId = req.params.usuarioId
+    const update = req.body
+
+    Usuario.findByIdAndUpdate(usuarioId,update,(usuarioUpdated)=>{
+
+        res.json({
+            Usuario: usuarioUpdated,
+            mensaje: 'el usuario ha sido modificado'
+        })   
+    })
+    
+}
+
+//controladores delete
+
+UsuarioCtrl.borrar =async(req,res)=>{
+    let usuarioId = req.params.usuarioId
+
+    Usuario.findById(usuarioId, (err, usuario)=>{
+        if (err) res.json({message: 'Error al borrar el usuario'+ err})
+
+        usuario.remove(err=>{
+            if (err) res.json({message: 'Error al borrar el usuario'+ err})
+            res.json({message: 'El usuario ha sido eliminado'})
+        })
+    })
+    
+
+}
+
 
 module.exports=UsuarioCtrl

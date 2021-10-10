@@ -6,7 +6,6 @@ const cors= require('cors')
 require('./database')
 app.use(express.json())
 app.set('Port',4000)
-
 app.use(morgan('dev'))
 app.use(cors({origen:'*'}))
 
