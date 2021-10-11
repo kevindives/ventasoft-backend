@@ -4,7 +4,7 @@ const jwt =require('jsonwebtoken')
 
 ProductoCtrl.crearProducto=async(req, res)=>{
     const {nombre,cantidad,descripcion,color,precioUnitario}=res.body
-    const NuevoProducto=new producto({
+    const NuevoProducto=new Producto({
         nombre,cantidad,descripcion,color,precioUnitario
     })
     const nombreProducto = await Producto.findOne({nombre:nombre})
