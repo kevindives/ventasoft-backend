@@ -11,6 +11,7 @@ app.use(morgan('dev'))
 app.use(cors({origen:'*'}))
 
 
+app.use('/producto',require('./routes/producto.route'))
 app.use('/usuario',require('./routes/usuario.route'))
 
 app.listen(app.get('Port'),()=>{
