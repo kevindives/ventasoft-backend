@@ -24,4 +24,4 @@ ProductoCtrl.crearProducto=async(req, res)=>{
     }
 }
 
-module.export = productoCtrl
+module.export = ProductoCtrl

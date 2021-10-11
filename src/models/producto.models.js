@@ -3,10 +3,10 @@ const {Schema} = mongoose
 
 const ProductoSchema = Schema({
     nombre : String,
-    cantidad : Float32Array,
+    cantidad : String,
     descripcion : String,
     color : String,
-    precioUnitario : Float32Array,
+    precioUnitario : String,
 })
 
 module.exports = mongoose.model('producto', ProductoSchema)
