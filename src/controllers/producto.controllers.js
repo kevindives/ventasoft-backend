@@ -1,13 +1,13 @@
 const ProductoCtrl ={}
-const Producto =require('../models/producto.model')
+const Producto =require('../models/producto.models')
 const jwt =require('jsonwebtoken')
 
-productoCtrl.crearProducto=async(req, res)=>{
+ProductoCtrl.crearProducto=async(req, res)=>{
     const {nombre,cantidad,descripcion,color,precioUnitario}=res.body
     const NuevoProducto=new producto({
         nombre,cantidad,descripcion,color,precioUnitario
     })
-    const nombreProducto = await producto.findOne({nombre:nombre})
+    const nombreProducto = await Producto.findOne({nombre:nombre})
     if(nombreProducto){
         res.json({
             mensaje:'El producto ya existe'
