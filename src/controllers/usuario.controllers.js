@@ -58,18 +58,18 @@ UsuarioCtrl.crearUsuario=async(req,res)=>{
 
 UsuarioCtrl.login= async(req,res)=>{
     const{correo,contrasena}=req.body
-    const Usuario = await Usuario.findOne({correo:correo})
-    if(!Usuario){
+    const usuario = await Usuario.findOne({correo:correo})
+    if(!usuario){
         return res.json({
             mensaje:'correo incorrecto'
         })
     }
-    const match = await bcrypt.compare(contrasena,Usuario.contrasena)
+    const match = await bcrypt.compare(contrasena,usuario.contrasena)
     if (match){
-        const token = jwt.sign({_id:Usuario._id},'secreta')
+        const token = jwt.sign({_id:usuario._id},'secreta')
         res.json({
             mensaje:'Bienvenido',
-            id: Usuario._id,
+            id: usuario._id,
             nombre:Usuario.nombre,
             token
         })
