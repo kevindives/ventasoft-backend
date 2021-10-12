@@ -3,11 +3,17 @@ const router= Router()
 const VentasCtrl=require('../controllers/ventas.controllers')
 
 
-// rutas get
+// RUTAS GET
+//ruta para ver todas la ventas
 router.get('/verventas', VentasCtrl.verVentas )
+//ruta para buscar venta por Id de la venta
 router.get('/verventas/:ventaId', VentasCtrl.ventaById)
-// router.get('/verventas/:clienteId', VentasCtrl.ventaByIdCliente)
-// router.get('/verventas/:nombre', VentasCtrl.ventaByCliente)
+//ruta para buscar venta por Id del cliente
+router.get('/buscarID/:clienteId', VentasCtrl.ventaByIdCliente)
+//ruta para buscar venta por nombre del cliente
+router.get('/buscar/:nombre', VentasCtrl.ventaByCliente)
+
+
 //rutas post
 router.post('/crearventa', VentasCtrl.crearVenta)
 

@@ -4,16 +4,31 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 //controladores get
+//lista todos los usuarios
 UsuarioCtrl.verUsuarios = async(req,res)=>{
     const verUsuario =await Usuario.find({})
 
     res.json({verUsuario})
 }
-
+//lista con todos los vendedores
 UsuarioCtrl.verVendedores = async(req,res)=>{
     const verUsuario =await Usuario.find({"rol":"vendedor"})
 
     res.json({verUsuario})
+}
+//busca vendedores y usuarios por Id
+UsuarioCtrl.buscarById = async (req,res)=>{
+    const vendedorId = req.params.vendedorId
+    const verVendedor = await Usuario.findById(vendedorId)
+
+    res.json(verVendedor)
+}
+//busca vendedores y usuarios por nombre
+UsuarioCtrl.buscarByName = async(req,res)=>{
+    const nombres= req.params.nombres
+    const verVendedor = await Usuario.findOne({nombre:{$regex:".*"+nombres+".*"}})
+
+    res.json(verVendedor)   
 }
 
 

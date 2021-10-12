@@ -5,7 +5,12 @@ const VentaSchema = Schema({
     fecha:String,  
     clienteId:String,
     nombreCliente:String,
-    cantidad:{type: Number , default:1}
+    vendedorId:String,
+    nombreVendedor: String,
+    codigoProducto: String,
+    cantidad:{type: Number , default:1},
+    precioUni: {type: Number, default:0},
+    totalPago: {type: Number, default:0}
 })
 
 module.exports=mongoose.model('venta',VentaSchema)
