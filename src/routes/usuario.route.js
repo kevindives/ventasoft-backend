@@ -10,7 +10,7 @@ router.post('/crear',UsuarioCtrl.crearUsuario)
 router.post('/login', UsuarioCtrl.login)
 
 //rutas put
-router.put('/modificar/:usuarioId',UsuarioCtrl.modiicar)
+router.put('/modificar/:usuarioId',UsuarioCtrl.modificar)
 
 //rutas delete
 router.delete('/borrar/:usuarioId',UsuarioCtrl.borrar)

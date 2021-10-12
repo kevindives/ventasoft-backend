@@ -66,7 +66,7 @@ UsuarioCtrl.login= async(req,res)=>{
 }
 
 //controladores put
-UsuarioCtrl.modiicar=async(req,res)=>{
+UsuarioCtrl.modificar=async(req,res)=>{
     const usuarioId = req.params.usuarioId
     const update = req.body
 
@@ -83,7 +83,7 @@ UsuarioCtrl.modiicar=async(req,res)=>{
 //controladores delete
 
 UsuarioCtrl.borrar =async(req,res)=>{
-    let usuarioId = req.params.usuarioId
+    const usuarioId = req.params.usuarioId
 
     Usuario.findById(usuarioId, (err, usuario)=>{
         if (err) res.json({message: 'Error al borrar el usuario'+ err})
