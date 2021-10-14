@@ -5,8 +5,8 @@ const UsuarioSchema = Schema({
     nombre:String,
     correo:String,
     contrasena:String,
-    rol:{type: String, enum:['administrador','vendedor']},
-    estado: {type: String, enum:['activo','inactivo']}
+    rol:{type: String, enum:['administrador','vendedor'],default:'vendedor'},
+    estado: {type: String, enum:['activo','inactivo'], default:'inactivo'}
 })
 
 module.exports=mongoose.model('usuario',UsuarioSchema)

@@ -1,15 +1,16 @@
 const {Router} = require('express')
 const router= Router()
 const UsuarioCtrl=require('../controllers/usuario.controllers')
+const Auth = require('../helper/auth')
 //RUTAS GET
 //ruta para ver todos los usuarios
-router.get('/verusuarios',UsuarioCtrl.verUsuarios)
+router.get('/verusuarios',Auth.verificartoken,UsuarioCtrl.verUsuarios)
 //ruta para ver todos los vendedores
-router.get('/vervendedores',UsuarioCtrl.verVendedores)
+router.get('/vervendedores',Auth.verificartoken,UsuarioCtrl.verVendedores)
 //ruta para buscar por id
-router.get('/vervendedores/:vendedorId',UsuarioCtrl.buscarById)
+router.get('/vervendedores/:vendedorId',Auth.verificartoken,UsuarioCtrl.buscarById)
 //ruta para buscar por nombre
-router.get('/buscar/:nombres',UsuarioCtrl.buscarByName)
+router.get('/buscar/:nombres',Auth.verificartoken,UsuarioCtrl.buscarByName)
 
 
 //rutas post
