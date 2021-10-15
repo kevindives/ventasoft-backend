@@ -6,18 +6,16 @@ const Venta = require ('../models/ventas.models')
 VentasCtrl.verVentas = async(req,res)=>{
     const verVentas =await Venta.find({})
 
-    res.json({verVentas})
+    res.json(verVentas)
 }
 //busca una venta por Id de la venta
 VentasCtrl.ventaById = async(req,res)=>{
     const ventaId = req.params.ventaId
 
-    Venta.findById(ventaId,(err, venta)=>{
-        if (err) return res.json({message: 'Error al realizar la peticion' + err})
-        if (!venta) return res.json({message:'La venta no existe'})
+    const verVenta = await Venta.findById(ventaId)
 
-        res.json({venta})
-    })
+        res.json(verVenta)
+
 }
 //busca una venta por Id del cliente
 VentasCtrl.ventaByIdCliente = async(req,res)=>{
@@ -51,26 +49,20 @@ VentasCtrl.modificarVenta = async (req,res)=>{
     const ventaId = req.params.ventaId
     const update = req.body
 
-    Venta.findByIdAndUpdate(ventaId,update,(ventaUpdated)=>{
-
-        res.json({
-            Usuario: ventaUpdated,
-            mensaje: 'La venta ha sido modificado'
-        })   
+    await Venta.findByIdAndUpdate({_id:ventaId},update)
+    res.json({
+        mensaje:'La venta ha sido modificada'
     })
+        
 }
 
 //controladores delete
 VentasCtrl.eliminarVenta =async(req, res)=>{
     const ventaId = req.params.ventaId
 
-    Venta.findById(ventaId, (err, venta)=>{
-        if (err) res.json({message: 'Error al borrar la venta'+ err})
-
-        venta.remove(err=>{
-            if (err) res.json({message: 'Error al borrar la venta'+ err})
-            res.json({message: 'La venta ha sido eliminado'})
-        })
+    await Venta.findByIdAndDelete({_id:ventaId})
+    res.json({
+        mensaje:'Venta eliminada'
     })
 }
 

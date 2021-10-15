@@ -85,14 +85,11 @@ UsuarioCtrl.modificar=async(req,res)=>{
     const usuarioId = req.params.usuarioId
     const update = req.body
 
-    Usuario.findByIdAndUpdate(usuarioId,update,(usuarioUpdated)=>{
-
-        res.json({
-            Usuario: usuarioUpdated,
-            mensaje: 'el usuario ha sido modificado'
-        })   
+    await Usuario.findByIdAndUpdate({_id:usuarioId},update)
+    res.json({
+        mensaje: 'Usuario modificado'
     })
-    
+  
 }
 
 //controladores delete
@@ -100,13 +97,9 @@ UsuarioCtrl.modificar=async(req,res)=>{
 UsuarioCtrl.borrar =async(req,res)=>{
     const usuarioId = req.params.usuarioId
 
-    Usuario.findById(usuarioId, (err, usuario)=>{
-        if (err) res.json({message: 'Error al borrar el usuario'+ err})
-
-        usuario.remove(err=>{
-            if (err) res.json({message: 'Error al borrar el usuario'+ err})
-            res.json({message: 'El usuario ha sido eliminado'})
-        })
+    await Usuario.findByIdAndDelete({_id:usuarioId})
+    res.json({
+        mensaje:'Usuario eliminado'
     })
     
 

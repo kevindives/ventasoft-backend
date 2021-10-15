@@ -14,13 +14,13 @@ router.get('/buscar/:nombres',Auth.verificartoken,UsuarioCtrl.buscarByName)
 
 
 //rutas post
-router.post('/crear',UsuarioCtrl.crearUsuario)
+router.post('/crear',Auth.verificartoken,UsuarioCtrl.crearUsuario)
 router.post('/login', UsuarioCtrl.login)
 
 //rutas put
-router.put('/modificar/:usuarioId',UsuarioCtrl.modificar)
+router.put('/modificar/:usuarioId',Auth.verificartoken,UsuarioCtrl.modificar)
 
 //rutas delete
-router.delete('/borrar/:usuarioId',UsuarioCtrl.borrar)
+router.delete('/borrar/:usuarioId',Auth.verificartoken,UsuarioCtrl.borrar)
 
 module.exports=router
