@@ -8,13 +8,13 @@ const jwt = require('jsonwebtoken')
 UsuarioCtrl.verUsuarios = async(req,res)=>{
     const verUsuario =await Usuario.find({})
 
-    res.json({verUsuario})
+    res.json(verUsuario)
 }
 //lista con todos los vendedores
 UsuarioCtrl.verVendedores = async(req,res)=>{
     const verUsuario =await Usuario.find({"rol":"vendedor"})
 
-    res.json({verUsuario})
+    res.json(verUsuario)
 }
 //busca vendedores y usuarios por Id
 UsuarioCtrl.buscarById = async (req,res)=>{
@@ -70,7 +70,7 @@ UsuarioCtrl.login= async(req,res)=>{
         res.json({
             mensaje:'Bienvenido',
             id: usuario._id,
-            nombre:Usuario.nombre,
+            nombre:usuario.nombre,
             token
         })
     }else{
