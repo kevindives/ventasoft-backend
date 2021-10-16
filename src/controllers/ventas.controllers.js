@@ -34,9 +34,9 @@ VentasCtrl.ventaByCliente = async(req,res)=>{
 
 //controladores post 
 VentasCtrl.crearVenta = async(req,res)=>{
-    const {fecha,clienteId,nombreCliente,vendedorId,nombreVendedor,codigoProducto,cantidad,precioUni,totalPago} =req.body
+    const {fecha,clienteId,nombreCliente,vendedorId,nombreVendedor,codigoProducto,cantidad,precioUni,estado,totalPago} =req.body
     const nuevaVenta = new Venta ({
-        fecha, clienteId, nombreCliente,vendedorId,nombreVendedor,codigoProducto, cantidad,precioUni,totalPago
+        fecha, clienteId, nombreCliente,vendedorId,nombreVendedor,codigoProducto, cantidad,precioUni,estado,totalPago
     })
     await nuevaVenta.save()
     res.json({

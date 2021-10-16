@@ -26,7 +26,7 @@ UsuarioCtrl.buscarById = async (req,res)=>{
 //busca vendedores y usuarios por nombre
 UsuarioCtrl.buscarByName = async(req,res)=>{
     const nombres= req.params.nombres
-    const verVendedor = await Usuario.findOne({nombre:{$regex:".*"+nombres+".*"}})
+    const verVendedor = await Usuario.find({nombre:{$regex:".*"+nombres+".*"}})
 
     res.json(verVendedor)   
 }

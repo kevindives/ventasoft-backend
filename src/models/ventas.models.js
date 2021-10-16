@@ -10,6 +10,7 @@ const VentaSchema = Schema({
     codigoProducto: String,
     cantidad:{type: Number , default:1},
     precioUni: {type: Number, default:0},
+    estado: String,
     totalPago: {type: Number, default:0}
 })
 
